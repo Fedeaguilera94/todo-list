@@ -1,10 +1,11 @@
 import "./App.css";
-import { useState } from "react";
+
 import TodoForm from "./components/TodoForm";
 import { TodoList } from "./components/TodoList";
+import useStickyState from "./lib";
 
 function App() {
-  const [todos, setTodos] = useState([]); // {[todo], [todo]}    ,set()
+  const [todos, setTodos] = useStickyState([], "todos"); // {[todo], [todo]}    ,set()
 
   function addTodo(todo) {
     setTodos([...todos, todo]);
@@ -28,13 +29,33 @@ function App() {
     setTodos(todos.filter((task) => task.id !== id));
   }
 
+  function editTodo(id, newData) {
+    // { id: "", task: "", complete: false }
+    setTodos(
+      todos.map((task) => {
+        if (task.id === id) {
+          return {
+            ...task,
+            task: newData,
+          };
+        }
+        return task;
+      })
+    );
+  }
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>Todo List</h1>
 
         <TodoForm addTodo={addTodo} />
-        <TodoList todos={todos} stateComplete={stateComplete} deleteTodo = {deleteTodo}/>
+        <TodoList
+          todos={todos}
+          stateComplete={stateComplete}
+          deleteTodo={deleteTodo}
+          editTodo={editTodo}
+        />
       </header>
     </div>
   );
