@@ -1,31 +1,31 @@
-import React from 'react'
+import React from "react";
+import styles from "../Styles/Todo.module.css";
 
+export const Todo = ({ todo, stateComplete, deleteTodo }) => {
+  function handleCheck() {
+    stateComplete(todo.id);
+  }
 
-export const Todo = ({todo, stateComplete, deleteTodo}) => {
+  function handleDelete() {
+    deleteTodo(todo.id);
+  }
 
-    function handleCheck(){
-        stateComplete(todo.id)
+  return (
+    <div style={{ display: "flex" }}>
+      <input type="checkbox" onClick={handleCheck} />
 
-    }
-    
-    function handleDelete(){
-        deleteTodo(todo.id)
-    }
-
-
-
-    return (
-        <div style={{display:"flex"}}>
-            <input type="checkbox" onClick={handleCheck}/>
-
-
-            
-            <div style={{color:"white", textDecoration: todo.complete ? "line-through": "" }} >
-                
-                {todo.task}
-            </div>
-            <button onClick={handleDelete}>Eliminar</button>
-            
-        </div>
-    )
-}
+      <div className ={
+          styles.todo
+      }
+        style={{
+          textDecoration: todo.complete ? "line-through" : "",
+        }}
+      >
+        {todo.task}
+      </div>
+      <button className={styles.btn} onClick={handleDelete}>
+        Delete
+      </button>
+    </div>
+  );
+};

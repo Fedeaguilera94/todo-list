@@ -4,7 +4,7 @@ import TodoForm from "./components/TodoForm";
 import { TodoList } from "./components/TodoList";
 
 function App() {
-  const [todos, setTodos] = useState([]); // {[todo], [todo]}    ,set()
+  const [todos, setTodos] = useState([]);
 
   function addTodo(todo) {
     setTodos([...todos, todo]);
@@ -34,7 +34,11 @@ function App() {
         <h1>Todo List</h1>
 
         <TodoForm addTodo={addTodo} />
-        <TodoList todos={todos} stateComplete={stateComplete} deleteTodo = {deleteTodo}/>
+        <TodoList
+          todos={todos}
+          stateComplete={stateComplete}
+          deleteTodo={deleteTodo}
+        />
       </header>
     </div>
   );

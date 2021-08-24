@@ -1,0 +1,20 @@
+.btn {
+    
+
+    border-radius: 60px;
+    font-family: Courier New;
+    color: #ffffff;
+    font-size: 15px;
+    background: #ed8a00;
+   
+    text-decoration: none;
+  }
+  
+  .btn:hover {
+    background: #3cb0fd;
+    text-decoration: none;
+  }
+
+  .todo{
+      color:white;
+  }
